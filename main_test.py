@@ -17,16 +17,18 @@ def test_main_1():
     lines = captureOut.getvalue().split('\n')
     print(lines)
 
-    dict1 = {'name': 'KIM', 'ZIP': 94598, 'address': '1234 Grand ave'}
-    main.printDict(dict1)
-    dict2 = {'score': [100, 90], 'Grade': 'Senior'}
-    main.printDict(dict2)
-    dict3 = main.mergeDict(dict1, dict2)
-    main.printDict(dict3)
+    students = main.makeStudentDictionary()
+    main.printStudent(students)
+    scores = main.findStudent(students, '2023-0001')
 
-    assert len(dict3) == 5
-    assert dict3['Grade'] == 'Senior'
-    assert dict3['name'] == 'KIM'
+    students.sort(key=lambda d: d['Name'])
+
+    assert len(students) == 4
+    assert students[0]['Name'] == 'Bill Watson'
+    assert students[3]['Name'] == 'Mary Smith'
+
+    assert len(scores) == 3
+
     # regex_string = r'[\w,\W]*1'
     # regex_string += r'[\w,\W]*3'
     # regex_string += r'[\w,\W]*5'
